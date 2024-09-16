@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Maui.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Maui.Models"
+    xmlns:vm="clr-namespace:Maui.ViewModels"
+    x:DataType="vm:ProfileViewModel">
+
+    <ScrollView Margin="0,-90,0,-40" VerticalScrollBarVisibility="Never">
+        <Grid
+            Margin="30,0,30,30"
+            ColumnDefinitions="*,*,*"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+            RowSpacing="15">
+            <!--  Rounded main picture  -->
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="-30,-25,-30,-30"
+                Padding="0"
+                CornerRadius="40"
+                IsClippedToBounds="True">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="410"
+                    HorizontalOptions="FillAndExpand"
+                    Source="model.jpg" />
+            </Frame>
+
+            <!--  Floating Buttons  -->
+
+            <!--  Delete Button  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,-50,0,0"
+                BackgroundColor="White"
+                CornerRadius="40"
+                HeightRequest="80"
+                ImageSource="delete"
+                WidthRequest="80">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="#bcbcbc"
+                        Opacity="0.6"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+            <!--  Like Button  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,-50,0,0"
+                BackgroundColor="#f858a4"
+                CornerRadius="55"
+                HeightRequest="110"
+                ImageSource="heartt"
+                WidthRequest="110">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="#f8bcd9"
+                        Opacity="0.6"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+            <!--  Rate Button  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="0,-50,0,0"
+                BackgroundColor="White"
+                CornerRadius="40"
+                HeightRequest="80"
+                ImageSource="star"
+                WidthRequest="80">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="#bcbcbc"
+                        Opacity="0.6"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+            <!--  Details  -->
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="Madeline, 20" />
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Graphic Designer"
+                TextColor="#a3a3a3" />
+
+            <Button
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HeightRequest="55"
+                HorizontalOptions="End"
+                ImageSource="telegram"
+                VerticalOptions="Center"
+                WidthRequest="55">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="#bcbcbc"
+                        Opacity="0.6"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="About" />
+
+            <Label
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalTextAlignment="End"
+                Text="Read more"
+                TextColor="#c0bebe" />
+
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..."
+                TextColor="#a3a3a3" />
+
+            <!--  Interests list  -->
+
+            <!--  Title  -->
+            <Label
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Interest" />
+
+            <!--  List  -->
+            <CollectionView
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HeightRequest="120"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding profile}"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type local:Profile}">
+                        <StackLayout Padding="0,0,20,0">
+                            <Button
+                                BackgroundColor="{Binding BgColor}"
+                                CornerRadius="20"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Description}"
+                                TextColor="Black" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
